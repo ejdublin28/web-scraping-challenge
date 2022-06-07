@@ -17,10 +17,13 @@ def home():
     news = mongo.db.news.find_one()
     images = mongo.db.images.find_one()
     facts = mongo.db.facts.find_one()
-    hems = mongo.db.hems.find_one()
-
+    hems_1 = mongo.db.hems_1.find_one()
+    hems_2 = mongo.db.hems_2.find_one()
+    hems_3 = mongo.db.hems_3.find_one()
+    hems_4 = mongo.db.hems_4.find_one()
+    
     # Return template and data
-    return render_template("index.html", news=news, images=images, facts=facts, hems=hems)
+    return render_template("index.html", news=news, images=images, facts=facts, hems_1=hems_1, hems_2=hems_2, hems_3=hems_3, hems_4=hems_4)
 
 
 # Route that will trigger the scrape function
@@ -43,7 +46,18 @@ def scrape():
 
     # Run the scrape function to get MARS HEMISPHERE IMAGES
     mars_hems = scrape_mars.hem_urls
-    mars.hems.update_many({},mars_hems, upsert=True)
+    
+    mars.hems_1.update({},mars_hems[0], upsert=True)
+    mars.hems_2.update({},mars_hems[1], upsert=True)
+    mars.hems_3.update({},mars_hems[2], upsert=True)
+    mars.hems_4.update({},mars_hems[3], upsert=True)
+    # for i in range(0,3):
+    #     mars.hems_[i].update({},mars_hems[i], upsert=True)
+
+    # mars.hems.insert_one({},mars_hems[0], upsert=True)
+    # mars.hems.insert_one({},mars_hems[1], upsert=True)
+    # mars.hems.insert({},mars_hems[2], upsert=True)
+    # mars.hems.insert_one({},mars_hems[3], upsert=True)
 
     return redirect("/")
 

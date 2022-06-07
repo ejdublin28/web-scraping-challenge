@@ -128,8 +128,8 @@ scrape_facts()
 #Creating Dictionary With Titles and Images
 
 hem_urls = [
-    {"title1": "Valles Marineris Hemisphere", "img_url1": "https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg"},
-    {"title2": "Cerberus Hemisphere", "img_url2": "https://marshemispheres.com/images/full.jpg"},
-    {"title3": "Schiaparelli Hemisphere", "img_url3": "https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg"},
-    {"title4": "Syrtis Major Hemisphere", "img_url4": "https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg"},
+    {"title": "Valles Marineris Hemisphere", "img_url": "https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg"},
+    {"title": "Cerberus Hemisphere", "img_url": "https://marshemispheres.com/images/full.jpg"},
+    {"title": "Schiaparelli Hemisphere", "img_url": "https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg"},
+    {"title": "Syrtis Major Hemisphere", "img_url": "https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg"},
 ]
