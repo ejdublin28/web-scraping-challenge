@@ -81,8 +81,10 @@ relative_image_path
 
 #Creating Dictionary Value Outside of Definition
 mars_facts = {}
+earth_facts = {}
 tbl_headers = []
 tbl_details = []
+
 
 def scrape_facts():
     #Setting up Splinter
@@ -99,7 +101,7 @@ def scrape_facts():
     html = browser.html
     soup = bs(html, "html.parser")
 
-    facts_tbl = soup.find('table',class_="table table-striped")
+    facts_tbl = soup.find('table',class_="table")
     facts_tbl
 
     for i in facts_tbl.find_all('th'):
@@ -111,13 +113,14 @@ def scrape_facts():
         tbl_details.append(row_details)
 
     for i in range(0,len(tbl_headers)):
-        mars_facts.update({tbl_headers[i]:tbl_details[i]})
+        mars_facts.update({tbl_headers[i]:tbl_details[2*i]})
+        earth_facts.update({tbl_headers[i]:tbl_details[(2*i)+1]})
     #nasa_mars_news['text'] = soup.find(class_="article_teaser_body").text
     # test['b'] = soup.find("p",class_="content_title").get_text()
     
     browser.quit()
 
-    return mars_facts
+    return mars_facts, earth_facts
 
 
 scrape_facts()

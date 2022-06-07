@@ -16,14 +16,15 @@ def home():
     # Find one record of data from the mongo database
     news = mongo.db.news.find_one()
     images = mongo.db.images.find_one()
-    facts = mongo.db.facts.find_one()
+    mars_facts = mongo.db.mars_facts.find_one()
+    earth_facts = mongo.db.earth_facts.find_one()
     hems_1 = mongo.db.hems_1.find_one()
     hems_2 = mongo.db.hems_2.find_one()
     hems_3 = mongo.db.hems_3.find_one()
     hems_4 = mongo.db.hems_4.find_one()
-    
+
     # Return template and data
-    return render_template("index.html", news=news, images=images, facts=facts, hems_1=hems_1, hems_2=hems_2, hems_3=hems_3, hems_4=hems_4)
+    return render_template("index.html", news=news, images=images, mars_facts=mars_facts, earth_facts=earth_facts, hems_1=hems_1, hems_2=hems_2, hems_3=hems_3, hems_4=hems_4)
 
 
 # Route that will trigger the scrape function
@@ -40,9 +41,10 @@ def scrape():
     mars_images = scrape_mars.scrape_images()
     mongo.db.images.update({}, mars_images, upsert=True)
     
-    # Run the scrape function to get MARS FACTS
-    mars_facts = scrape_mars.scrape_facts()
-    mars.facts.update({}, mars_facts, upsert=True)
+    # Run the scrape function to get MARS & EARTH FACTS
+    table_facts = scrape_mars.scrape_facts()
+    mars.mars_facts.update({}, table_facts[0], upsert=True)
+    mars.earth_facts.update({}, table_facts[1], upsert=True)
 
     # Run the scrape function to get MARS HEMISPHERE IMAGES
     mars_hems = scrape_mars.hem_urls
